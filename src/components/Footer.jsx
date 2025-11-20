@@ -1,14 +1,14 @@
 import React from "react";
+import siteContent from "../content/siteContent";
 
 const Footer = () => {
+  const { tagline, rightsPrefix } = siteContent.footer;
   return (
     <div className="bg-black bg-opacity-70 text-myWhite font-bebas py-16 px-10 sm:px-20">
       <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
         {/* Left: Tagline */}
         <div className="flex-1 text-center sm:text-left mb-6 sm:mb-0">
-          <p className="text-3xl sm:text-4xl italic font-light">
-            "Let's get Connected"
-          </p>
+          <p className="text-3xl sm:text-4xl italic font-light">{tagline}</p>
         </div>
 
         {/* Right: Social Media Icons */}
@@ -42,8 +42,7 @@ const Footer = () => {
       {/* Footer Text */}
       <div className="text-center mt-8 sm:mt-12">
         <p className="text-sm sm:text-base">
-          &copy; {new Date().getFullYear()} Chowdhury Nafis Faiyaz. All rights
-          reserved.
+          &copy; {new Date().getFullYear()} {rightsPrefix}
         </p>
       </div>
     </div>

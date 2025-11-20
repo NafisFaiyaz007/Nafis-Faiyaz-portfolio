@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
+import siteContent from "../content/siteContent";
+
 const Navbar = () => {
   const [scrolling, setScrolling] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const myPic =
-    "https://res.cloudinary.com/dq8h4hhir/image/upload/c_crop,ar_1:1/v1736868501/Portfolio%20Pictures/Nafis_faiyaz_CV_imagejpg_grasci.jpg";
-   const navigateToLink = (link) => {
-     window.open(link, "_blank"); // Opens the link in a new tab
-   };
-   const cv =
-     "https://drive.google.com/file/d/1KYm1Mu5enMkWUAV7aeh6iMov9reEPESc/view?usp=sharing";
-     const resume =
-       "https://drive.google.com/file/d/1IBuKYsz48G2CcBfX9ToW7IDk-maT-yO8/view?usp=sharing";
+  const { profile, documents, navbar } = siteContent;
+  const navigateToLink = (link) => {
+    window.open(link, "_blank");
+  };
   // Shrink navbar on scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -37,27 +34,31 @@ const Navbar = () => {
         <div className="flex items-center space-x-6">
           <img
             className="w-14 max-w-xs sm:max-w-sm rounded-full border-2 border-myCyan object-cover"
-            src={myPic}
+            src={profile.profileImage}
             alt="Profile Pic"
+            loading="lazy"
+            decoding="async"
           />
-          <h2 className="font-bebas text-2xl border-l-2 p-4 text-myCyan"> Nafis Faiyaz</h2>
+          <h2 className="font-bebas text-2xl border-l-2 p-4 text-myCyan">
+            {navbar.tagline}
+          </h2>
         </div>
 
         {/* Desktop Menu */}
         <div className="space-x-6 hidden md:flex">
           <button
-            onClick={() => navigateToLink(cv)}
+            onClick={() => navigateToLink(documents.academicCv)}
             download
             className="inline-block text-sm px-6 py-2 leading-none border rounded text-gray-100 border-white hover:border-2  hover:border-myCyan hover:text-white transition duration-300"
           >
-            Academic CV
+            {navbar.academicLabel}
           </button>
           <button
-            onClick={() => navigateToLink(resume)}
+            onClick={() => navigateToLink(documents.professionalCv)}
             download
             className="inline-block text-sm px-6 py-2 leading-none border rounded text-gray-100 border-white hover:border-2 hover:border-myCyan hover:text-white transition duration-300"
           >
-            Professional CV
+            {navbar.professionalLabel}
           </button>
           
         </div>
@@ -85,20 +86,20 @@ const Navbar = () => {
           <ul className="space-y-4 text-lg text-gray-100">
             <li>
               <button
-                onClick={() => navigateToLink(cv)}
+                onClick={() => navigateToLink(documents.academicCv)}
                 download
                 className="inline-block text-sm px-6 py-2 leading-none border rounded-md text-gray-100 border-white hover:border-2  hover:border-myCyan hover:text-white "
               >
-                Academic CV
+                {navbar.academicLabel}
               </button>
             </li>
             <li>
               <button
-                onClick={() => navigateToLink(resume)}
+                onClick={() => navigateToLink(documents.professionalCv)}
                 download
                 className="inline-block text-sm px-6 py-2 leading-none border rounded-md text-gray-100 border-white hover:border-2 hover:border-myCyan hover:text-white"
               >
-                Professional CV
+                {navbar.professionalLabel}
               </button>
             </li>
           </ul>

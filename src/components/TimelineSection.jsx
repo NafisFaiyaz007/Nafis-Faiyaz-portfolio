@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import educationData from "../components/data/educationData";
 import experienceData from "../components/data/experienceData";
+import siteContent from "../content/siteContent";
 const TimelineSection = () => {
   const [isScrolledIntoView, setIsScrolledIntoView] = useState(false);
   const sectionRef = useRef(null);
+  const { workHeading, educationHeading } = siteContent.timeline;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -41,12 +43,19 @@ const TimelineSection = () => {
               : "opacity-0 translate-y-10"
           }`}
         >
-          <h2 className="text-3xl font-raleway mb-8">Work Experience</h2>
+          <h2 className="text-3xl font-raleway mb-8">{workHeading}</h2>
           <div className="relative border-l border-gray-600">
             {experienceData.map((item, index) => (
               <div key={index} className="mb-8 pl-6 relative">
                 <div className="absolute -left-3 top-1.5 w-6 h-6 bg-myTeal rounded-full"></div>
-                <h3 className="text-xl font-raleway">{item.title}</h3>
+                <div className="flex flex-wrap items-center gap-3">
+                  <h3 className="text-xl font-raleway">{item.title}</h3>
+                  {item.duration && (
+                    <span className="text-xs font-semibold tracking-wide bg-myTeal text-myWhite px-3 py-1 rounded-full">
+                      {item.duration}
+                    </span>
+                  )}
+                </div>
                 <p className="text-sm text-tealbg-teal-900">{item.company}</p>
                 <ul className="list-disc pl-6 mt-2">
                   {item.description.map((point, i) => (
@@ -69,7 +78,7 @@ const TimelineSection = () => {
               : "opacity-0 translate-y-10"
           }`}
         >
-          <h2 className="text-3xl font-raleway mb-8">Education</h2>
+          <h2 className="text-3xl font-raleway mb-8">{educationHeading}</h2>
           <div className="relative border-l border-gray-600">
             {educationData.map((item, index) => (
               <div key={index} className="mb-8 pl-6 relative">

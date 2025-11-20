@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useRef, useEffect } from "react";
 import paintingData from "./data/paintingData";
+import siteContent from "../content/siteContent";
 
 const Painting = () => {
   const [visibleIndexes, setVisibleIndexes] = useState([]);
   const sectionRefs = useRef([]);
+  const { heading, subheading } = siteContent.painting;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -38,13 +40,8 @@ const Painting = () => {
     <div className="bg-black bg-opacity-50 text-myWhite font-raleway py-16 px-4 sm:px-10 lg:px-16">
       {/* Motivational Line */}
       <div className="text-center mb-12">
-        <h2 className="text-3xl mb-4">
-          My inspiration for minimal design and creativity originates from
-          painting.
-        </h2>
-        <p className="text-gray-200 text-lg">
-          Explore my works that blend simplicity with elegance.
-        </p>
+        <h2 className="text-3xl mb-4">{heading}</h2>
+        <p className="text-gray-200 text-lg">{subheading}</p>
       </div>
 
       {/* Paintings Showcase */}
@@ -65,6 +62,8 @@ const Painting = () => {
                 src={Painting.image}
                 alt={Painting.title}
                 className="w-full h-auto object-cover"
+                loading="lazy"
+                decoding="async"
               />
               <div className="p-2">
                 <h3 className="text-xl text-left text-myCyan">

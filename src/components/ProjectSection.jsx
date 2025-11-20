@@ -2,11 +2,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import projectData from "./data/projectData";
 import "animate.css";
+import siteContent from "../content/siteContent";
 
 const ProjectSection = () => {
-  
   const [isScrolledIntoView, setIsScrolledIntoView] = useState(false);
   const sectionRef = useRef(null);
+  const { heading, cta } = siteContent.projects;
   const navigateToLink = (link) => {
     window.open(link, "_blank"); // Opens the link in a new tab
   };
@@ -46,7 +47,7 @@ const ProjectSection = () => {
             : "opacity-90 translate-y-2" // Keeps it slightly visible even when out of view
         }`}
       >
-        <h2 className="text-4xl font-raleway mb-12 text-center">Projects</h2>
+        <h2 className="text-4xl font-raleway mb-12 text-center">{heading}</h2>
         <div className="container mx-auto max-w-screen-lg space-y-16">
           {projectData.map((project, index) => (
             <div
@@ -60,6 +61,8 @@ const ProjectSection = () => {
                   src={project.image}
                   alt={project.title}
                   className="shadow-lg transform"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="lg:w-1/2 text-center lg:text-left space-y-4">
@@ -69,7 +72,7 @@ const ProjectSection = () => {
                   onClick={() => navigateToLink(project.link)}
                   className="bg-white border-2 border-myBlack hover:border-myCyan hover:bg-myCyan text-myBlack px-6 py-3 shadow-lg transition duration-300"
                 >
-                  Learn More
+                  {cta}
                 </button>
               </div>
             </div>
