@@ -4,49 +4,77 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#0e0e0d" />
+    <title>Chowdhury Nafis Faiyaz — Software Engineer, Co-founder of Venture.ag</title>
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Chowdhury Nafis Faiyaz is a software engineer and Co-founder & Lead Technical Consultant at Venture.ag, and a Master of Digital Transformation and Innovation (MDTI) student at the University of Ottawa. North South University CSE graduate."
     />
+    <meta name="author" content="Chowdhury Nafis Faiyaz" />
+    <link rel="canonical" href="https://nafisfaiyaz007.github.io/Nafis-Faiyaz-portfolio/" />
+
+    <!-- Open Graph / social previews -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content="Chowdhury Nafis Faiyaz — Software Engineer & Co-founder, Venture.ag" />
+    <meta
+      property="og:description"
+      content="Software engineer building AI-driven products for agriculture at Venture.ag. MDTI at the University of Ottawa."
+    />
+    <meta property="og:url" content="https://nafisfaiyaz007.github.io/Nafis-Faiyaz-portfolio/" />
+    <meta property="og:image" content="https://nafisfaiyaz007.github.io/Nafis-Faiyaz-portfolio/og-image.jpg" />
+    <meta property="profile:first_name" content="Nafis" />
+    <meta property="profile:last_name" content="Faiyaz" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Structured data: helps search engines connect the name to these organisations -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Chowdhury Nafis Faiyaz",
+        "alternateName": "Nafis Faiyaz",
+        "url": "https://nafisfaiyaz007.github.io/Nafis-Faiyaz-portfolio/",
+        "image": "https://nafisfaiyaz007.github.io/Nafis-Faiyaz-portfolio/og-image.jpg",
+        "jobTitle": "Co-founder & Lead Technical Consultant",
+        "worksFor": { "@type": "Organization", "name": "Venture.ag", "url": "https://www.venture.ag/" },
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Ottawa",
+          "url": "https://www.uottawa.ca/en"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "North South University", "url": "https://www.northsouth.edu/" },
+          { "@type": "School", "name": "Mastermind School", "url": "https://mastermind.edu.bd/" }
+        ],
+        "knowsAbout": ["Software Engineering", "React", "Next.js", "Machine Learning", "Geospatial systems", "Digital Transformation", "Agricultural technology"],
+        "sameAs": [
+          "https://www.linkedin.com/in/nafis-faiyaz193/",
+          "https://github.com/nafisfaiyaz007",
+          "https://www.venture.ag/"
+        ]
+      }
+    </script>
+
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!-- GOOGLE FONTS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script>
+      try {
+        if (localStorage.getItem("theme") === "light")
+          document.documentElement.classList.add("light");
+      } catch (e) {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet">
-    <!-- fontawesome -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
-
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Nafis Faiyaz | Portfolio</title>
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      Chowdhury Nafis Faiyaz — software engineer, Co-founder &amp; Lead Technical Consultant at Venture.ag,
+      MDTI student at the University of Ottawa. Enable JavaScript to view the full portfolio.
+    </noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

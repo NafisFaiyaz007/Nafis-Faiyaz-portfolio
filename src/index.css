@@ -2,25 +2,156 @@
 @tailwind components;
 @tailwind utilities;
 
+/* one container for every section: same gutters everywhere, capped on ultra-wide screens */
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-[1680px] px-4 sm:px-6 lg:px-8;
+  }
+  .section-y {
+    @apply py-24 sm:py-32 lg:py-36;
+  }
+}
+
+/* ---------- theme tokens (RGB channels so Tailwind alpha works) ---------- */
+:root {
+  --base: 14 14 13;
+  --surface: 24 24 22;
+  --fg: 237 236 232;
+  --accent: 255 90 42;
+  color-scheme: dark;
+}
+:root.light {
+  --base: 237 236 232;
+  --surface: 228 226 220;
+  --fg: 14 14 13;
+  --accent: 235 75 28;
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  background: rgb(var(--base));
+  color: rgb(var(--fg));
+  font-family: "Geist", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("https://res.cloudinary.com/dq8h4hhir/image/upload/f_auto,q_auto/v1736868009/Portfolio%20Pictures/bgImage_vlfc1v.jpg");
-  background-size: cover; /* Ensure the image covers the entire screen */
-  background-position: center; /* Center the background image */
-  background-attachment: fixed; /* Make the background fixed when scrolling */
-  color: black; /* Optional: Changes text color to white for better readability */
-  margin: 0; /* Removes default margin from body */
-  height: 100vh; /* Ensures the body takes up the full height of the viewport */
-   
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+::selection {
+  background: rgb(var(--accent));
+  color: rgb(var(--base));
 }
 
+/* ---------- film grain ---------- */
+.grain {
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 0.9s steps(6) infinite;
+}
+:root.light .grain {
+  opacity: 0.09;
+  mix-blend-mode: multiply;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-4%, 3%); }
+  40% { transform: translate(3%, -5%); }
+  60% { transform: translate(-2%, 6%); }
+  80% { transform: translate(5%, -2%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* slow drifting glow behind everything */
+.aurora-drift {
+  animation: drift 26s ease-in-out infinite alternate;
+}
+@keyframes drift {
+  0% { transform: translate(-10vw, -6vh) scale(1); }
+  50% { transform: translate(18vw, 10vh) scale(1.15); }
+  100% { transform: translate(-4vw, 24vh) scale(0.95); }
+}
+
+/* ---------- kinetic letters: roll on hover ---------- */
+.roll-clip {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding: 0.06em 0 0.12em;
+  margin: -0.06em 0 -0.12em;
+}
+.roll-inner {
+  position: relative;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.roll-copy {
+  position: absolute;
+  left: 0;
+  top: 1.15em;
+}
+.roll-group:hover .roll-inner {
+  transform: translateY(-1.15em);
+}
+
+/* blend the hero name over the portrait (dark theme only) */
+:root:not(.light) .blend {
+  mix-blend-mode: difference;
+}
+
+/* ---------- marquee ---------- */
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-speed, 40s) linear infinite;
+}
+.marquee.reverse {
+  animation-direction: reverse;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* outlined display type (footer sign-off) */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.25px rgb(var(--accent));
+}
+
+/* live dot */
+.pulse-dot {
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(var(--accent) / 0.55); }
+  50% { box-shadow: 0 0 0 6px rgb(var(--accent) / 0); }
+}
+
+/* ---------- scroll reveal used by <Reveal /> ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .grain, .aurora-drift, .marquee, .pulse-dot { animation: none; }
+  .roll-inner { transition: none; }
+}

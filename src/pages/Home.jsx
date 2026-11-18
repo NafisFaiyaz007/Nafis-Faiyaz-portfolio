@@ -1,24 +1,32 @@
 import React from "react";
-import Navbar from "../components/Navbar"; // Adjust the path if Navbar is in a different folder
+import Background from "../components/Background";
+import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
-import Expertise from "../components/Expertise";
-import TimelineSection from "../components/TimelineSection";
-import CombinedSection from "../components/ProjectSection";
-import Footer from "../components/Footer";
+import About from "../components/About";
+import Experience from "../components/Experience";
+import Education from "../components/Education";
+import ProjectSection from "../components/ProjectSection";
+import Toolkit from "../components/Toolkit";
 import Painting from "../components/Painting";
-const Home = () => {
-  return (
-    <div>
-      <Navbar />
-      <Hero/>
-      <Expertise/>
-      <TimelineSection/>
-      <CombinedSection/>
-      <Painting/>
-      <Footer/>
-      {/* Add the rest of your home page content here */}
+import Footer from "../components/Footer";
+
+const Home = () => (
+  <div className="relative min-h-screen font-sans text-fg">
+    <Background />
+    <Navbar />
+    <main className="relative z-10">
+      <Hero />
+      <About />
+      <Experience />
+      <Education />
+      <ProjectSection />
+      <Toolkit />
+      <Painting />
+    </main>
+    <div className="relative z-10">
+      <Footer />
     </div>
-  );
-};
+  </div>
+);
 
 export default Home;
